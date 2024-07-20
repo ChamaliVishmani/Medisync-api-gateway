@@ -29,6 +29,12 @@ public class ApiGatewayApplication {
 		}).route("serviceb-route",r->{
 			logger.info("Routing to serviceb");
 			return r.path("/serviceb/**").filters(f -> f.stripPrefix(1)).uri("lb://serviceb");
+		}).route("drug-interaction-checker-route",r->{
+			logger.info("Routing to drug-interaction-checker");
+			return r.path("/drug-interaction-checker/**").filters(f -> f.stripPrefix(1)).uri("lb://drug-interaction-checker");
+		}).route("disease-prediction-service-route",r->{
+			logger.info("Routing to disease-prediction-service");
+			return r.path("/disease-prediction-service/**").filters(f -> f.stripPrefix(1)).uri("lb://disease-prediction-service");
 		}).build();
 	}
 
