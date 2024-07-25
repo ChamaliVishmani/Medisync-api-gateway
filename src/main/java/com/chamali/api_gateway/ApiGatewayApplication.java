@@ -9,7 +9,6 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -35,6 +34,9 @@ public class ApiGatewayApplication {
 		}).route("disease-prediction-service-route",r->{
 			logger.info("Routing to disease-prediction-service");
 			return r.path("/disease-prediction-service/**").filters(f -> f.stripPrefix(1)).uri("lb://disease-prediction-service");
+		}).route("ml-backend-route",r->{
+			logger.info("Routing to ML Backend");
+			return r.path("/ml-backend/**").filters(f -> f.stripPrefix(1)).uri("lb://ml-backend");
 		}).build();
 	}
 
